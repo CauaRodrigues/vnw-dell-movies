@@ -8,13 +8,11 @@ export const Hero = styled.section`
 	justify-content: center;
 	align-items: flex-end;
 
-	background-image: ${(props) =>
-		props.bgimage
-			? `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${props.bgimage})`
-			: null};
+	background-image: ${(props) => `url(${props.bgimage})`};
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	background-position: center;
+	filter: opacity(0.8);
 
 	-webkit-box-shadow: inset 0px -105px 70px 53px rgba(0, 0, 0, 0.76);
 	-moz-box-shadow: inset 0px -105px 70px 53px rgba(0, 0, 0, 0.76);

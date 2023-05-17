@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import { FilmStrip, Play, Star } from "@phosphor-icons/react";
 
@@ -9,10 +10,10 @@ const Hero = ({ popular }) => {
 	const theme = useTheme();
 
 	return (
-		<S.Hero bgimage={popular.backdrop_path}>
+		<S.Hero bgimage={popular.image}>
 			<S.HeroContent>
 				<Text
-					text="Avatar: o Caminho da Água"
+					text={popular.title}
 					tag="h1"
 					color={theme?.colors.primary}
 					fw="bd"
@@ -20,7 +21,7 @@ const Hero = ({ popular }) => {
 				/>
 
 				<Text
-					text="3h 23min | Fantasia, Família | 2023"
+					text={`${popular.runtime} | ${popular.genres} | ${popular.release}`}
 					tag="span"
 					color={theme?.colors.primary}
 					fw="lg"
@@ -32,7 +33,7 @@ const Hero = ({ popular }) => {
 						<Star weight="fill" size={32} color={theme?.colors.yellow} />
 
 						<Text
-							text="9,9"
+							text={popular.vote}
 							tag="span"
 							color={theme?.colors.primary}
 							fw="rg"
@@ -47,11 +48,13 @@ const Hero = ({ popular }) => {
 						/>
 					</div>
 
-					<img src="/assets/icons/imdb.png" alt="imdb logo" />
+					<a href={popular.imdbUrl} target="_blank" rel="noopener noreferrer">
+						<img src="/assets/icons/imdb.png" alt="imdb logo" />
+					</a>
 				</S.HeroRating>
 
 				<Text
-					text="Lorem ipsum dolor sit amet consectetur adipiscing elit placerat accumsan posuere justo blandit, primis mauris ut sed pretium nulla porta fringilla montes pellentesque. Donec quis cum volutpat dictumst lectus, ad lacinia class."
+					text={popular.description}
 					tag="p"
 					color={theme?.colors.primary}
 					fw="lg"
@@ -59,7 +62,7 @@ const Hero = ({ popular }) => {
 				/>
 
 				<S.GroupButtons>
-					<Button bgcolor={theme?.colors.orange}>
+					<Button fill={theme?.colors.orange}>
 						<Play weight="fill" size={26} color={theme?.colors.light} />
 						<Text
 							text="Assistir Agora"
@@ -70,7 +73,7 @@ const Hero = ({ popular }) => {
 						/>
 					</Button>
 
-					<Button bgcolor={theme?.colors.gray_light}>
+					<Button fill={theme?.colors.gray_light}>
 						<FilmStrip weight="fill" size={26} color={theme?.colors.light} />
 						<Text
 							text="Trailer"

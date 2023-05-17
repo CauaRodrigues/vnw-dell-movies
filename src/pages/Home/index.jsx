@@ -22,15 +22,13 @@ const Home = () => {
 	};
 
 	useEffect(() => {
-		loadMovie();
-	}, []);
-
-	useEffect(() => {
 		if (tab === "series") {
 			setIsMovies(false);
 		} else {
 			setIsMovies(true);
 		}
+
+		loadMovie();
 	}, [tab]);
 
 	const title = isMovies ? "Filmes" : "Séries";
