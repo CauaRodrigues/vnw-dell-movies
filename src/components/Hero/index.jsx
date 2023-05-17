@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import { FilmStrip, Play, Star } from "@phosphor-icons/react";
+import MediaQuery, { useMediaQuery } from "react-responsive";
 
 import Text from "@components/Text";
 import Button from "@components/Button";
@@ -8,6 +9,9 @@ import * as S from "./hero.styled";
 
 const Hero = ({ popular }) => {
 	const theme = useTheme();
+	const isDesktop = useMediaQuery({
+		query: "(min-width: 650px)",
+	});
 
 	return (
 		<S.Hero bgimage={popular.image}>
@@ -53,13 +57,15 @@ const Hero = ({ popular }) => {
 					</a>
 				</S.HeroRating>
 
-				<Text
-					text={popular.description}
-					tag="p"
-					color={theme?.colors.primary}
-					fw="lg"
-					size="nl"
-				/>
+				<MediaQuery minWidth={650}>
+					<Text
+						text={popular.description}
+						tag="p"
+						color={theme?.colors.primary}
+						fw="lg"
+						size="nl"
+					/>
+				</MediaQuery>
 
 				<S.GroupButtons>
 					<Button fill={theme?.colors.orange}>

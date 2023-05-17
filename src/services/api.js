@@ -15,27 +15,25 @@ export default class Service {
 			.get("/movie/popular?language=pt-BR&page=1")
 			.then((res) => res.data);
 
-		const IdMovie = popularList.results[0].id;
+		const IdMovie = popularList.results[1].id;
 		const popularMovie = await api
 			.get(`/movie/${IdMovie}?language=pt-BR`)
 			.then((res) => {
 				const data = res.data;
-				console.log(data);
-
 				const genresList = data.genres.map((genre) => genre.name);
 				const genres = genresList.join(", ");
 				const runtime = FormatTime(data.runtime);
-				const releaseYear = FormatDate(data.release_date);
+				const release = FormatDate(data.release_date);
 
 				const formatData = {
 					title: data.title,
-					image: `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`,
-					genres,
-					runtime,
+					image: `https://image.tmdb.org/t/p/original${data.backdrop_path}`,
 					imdbUrl: `https://www.imdb.com/title/${data.imdb_id}/`,
 					description: data.overview,
 					vote: data.vote_average.toFixed(1),
-					release: releaseYear,
+					genres,
+					runtime,
+					release,
 				};
 
 				return formatData;

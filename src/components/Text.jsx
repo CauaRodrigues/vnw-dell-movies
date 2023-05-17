@@ -32,6 +32,8 @@ const TextStyled = styled.span`
 				return "min(1.6rem, 10vw)";
 			case "x-lg":
 				return "min(2.2rem, 10vw)";
+			case "xx-lg":
+				return "min(3.4rem, 15vw)";
 			default:
 				return "1rem";
 		}

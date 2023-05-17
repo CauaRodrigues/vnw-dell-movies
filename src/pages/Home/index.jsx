@@ -44,6 +44,8 @@ const Home = () => {
 				color={theme?.colors.yellow}
 				fw="bd"
 			/>
+
+			<div style={{ height: "120vh" }}></div>
 		</>
 	);
 };

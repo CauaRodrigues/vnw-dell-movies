@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Hero = styled.section`
 	width: 100%;
-	min-height: 95vh;
+	min-height: 100vh;
 
 	display: flex;
 	justify-content: center;
@@ -10,13 +10,16 @@ export const Hero = styled.section`
 
 	background-image: ${(props) => `url(${props.bgimage})`};
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-size: cover;
 	background-position: center;
-	filter: opacity(0.8);
 
 	-webkit-box-shadow: inset 0px -105px 70px 53px rgba(0, 0, 0, 0.76);
 	-moz-box-shadow: inset 0px -105px 70px 53px rgba(0, 0, 0, 0.76);
 	box-shadow: inset 0px -105px 70px 53px rgba(0, 0, 0, 0.76);
+
+	@media (max-width: 650px) {
+		min-height: 90vh;
+	}
 `;
 
 export const HeroContent = styled.div`
@@ -27,15 +30,40 @@ export const HeroContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;
+	text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.507),
+		0px -5px 35px rgba(255, 255, 255, 0.3);
+
+	@media (max-width: 750px) {
+		width: 90%;
+	}
+
+	@media (max-width: 650px) {
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	@media (max-width: 500px) {
+		width: 95%;
+		margin-bottom: 24px;
+	}
 
 	p {
 		width: 50%;
+
+		@media (max-width: 1170px) {
+			width: 80%;
+		}
+
+		@media (max-width: 750px) {
+			width: 90%;
+		}
 	}
 `;
 
 export const HeroRating = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: flex-end;
 	justify-content: flex-start;
 	gap: 1rem;
 
@@ -58,7 +86,9 @@ export const HeroRating = styled.div`
 
 export const GroupButtons = styled.div`
 	margin: 1rem 0;
+	width: 100%;
 	display: flex;
 	align-items: center;
+	justify-content: inherit;
 	gap: 1rem;
 `;
