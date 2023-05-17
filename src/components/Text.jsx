@@ -4,8 +4,8 @@ import styled from "styled-components";
 const Text = ({
 	tag = "p",
 	text = "",
-	color = "auto",
-	size = "normal",
+	color = "inherit",
+	size = "nl",
 	fw = "400",
 }) => {
 	return (

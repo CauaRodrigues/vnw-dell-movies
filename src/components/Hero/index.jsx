@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 import { FilmStrip, Play, Star } from "@phosphor-icons/react";
-import MediaQuery, { useMediaQuery } from "react-responsive";
+import MediaQuery from "react-responsive";
 
 import Text from "@components/Text";
 import Button from "@components/Button";
@@ -9,9 +8,6 @@ import * as S from "./hero.styled";
 
 const Hero = ({ popular }) => {
 	const theme = useTheme();
-	const isDesktop = useMediaQuery({
-		query: "(min-width: 650px)",
-	});
 
 	return (
 		<S.Hero bgimage={popular.image}>

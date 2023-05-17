@@ -1,51 +1,42 @@
 import { useEffect, useState } from "react";
-import { useTheme } from "styled-components";
 import { useParams } from "react-router-dom";
 
-import Text from "@components/Text";
 import Hero from "@components/Hero";
 import Service from "@services/api";
+import GenresList from "@components/GenresList";
+import * as S from "./page.styled";
 
 const srv = new Service();
 
 const Home = () => {
-	const [isMovies, setIsMovies] = useState(true);
-	const [popularMovie, setPopularMovie] = useState([]);
+	const [banner, setBanner] = useState({});
+	const [genresList, setGenresList] = useState([]);
 
-	const theme = useTheme();
 	const { tab } = useParams();
 
-	const loadMovie = async () => {
+	const loadData = async () => {
 		await srv.getPopularMovie().then((data) => {
-			setPopularMovie(data);
+			setBanner(data);
+		});
+
+		await srv.getGenresList().then((data) => {
+			setGenresList(data);
 		});
 	};
 
 	useEffect(() => {
-		if (tab === "series") {
-			setIsMovies(false);
-		} else {
-			setIsMovies(true);
-		}
-
-		loadMovie();
-	}, [tab]);
-
-	const title = isMovies ? "Filmes" : "Séries";
+		loadData();
+	}, []);
 
 	return (
 		<>
-			<Hero popular={popularMovie} />
+			<Hero popular={banner} />
 
-			<Text
-				tag="h1"
-				text={title}
-				size="x-lg"
-				color={theme?.colors.yellow}
-				fw="bd"
-			/>
-
-			<div style={{ height: "120vh" }}></div>
+			<S.Main>
+				<S.ContainerContent>
+					<GenresList genres={genresList} />
+				</S.ContainerContent>
+			</S.Main>
 		</>
 	);
 };

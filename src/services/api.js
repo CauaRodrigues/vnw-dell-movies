@@ -11,13 +11,8 @@ const api = axios.create({
 
 export default class Service {
 	async getPopularMovie() {
-		const popularList = await api
-			.get("/movie/popular?language=pt-BR&page=1")
-			.then((res) => res.data);
-
-		const IdMovie = popularList.results[1].id;
 		const popularMovie = await api
-			.get(`/movie/${IdMovie}?language=pt-BR`)
+			.get(`/movie/76600?language=pt-BR`)
 			.then((res) => {
 				const data = res.data;
 				const genresList = data.genres.map((genre) => genre.name);
@@ -40,5 +35,13 @@ export default class Service {
 			});
 
 		return popularMovie;
+	}
+
+	async getGenresList() {
+		const genresList = await api
+			.get("/genre/movie/list?language=pt-BR")
+			.then((res) => res.data.genres);
+
+		return genresList;
 	}
 }

@@ -12,10 +12,7 @@ export const Hero = styled.section`
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-
-	-webkit-box-shadow: inset 0px -105px 70px 53px rgba(0, 0, 0, 0.76);
-	-moz-box-shadow: inset 0px -105px 70px 53px rgba(0, 0, 0, 0.76);
-	box-shadow: inset 0px -105px 70px 53px rgba(0, 0, 0, 0.76);
+	box-shadow: inset 0px -44px 50px 14px rgba(0, 0, 0, 0.95);
 
 	@media (max-width: 650px) {
 		min-height: 90vh;
@@ -30,8 +27,7 @@ export const HeroContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;
-	text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.507),
-		0px -5px 35px rgba(255, 255, 255, 0.3);
+	text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.62);
 
 	@media (max-width: 750px) {
 		width: 90%;
