@@ -44,4 +44,20 @@ export default class Service {
 
 		return genresList;
 	}
+
+	async getLastReleases() {
+		const releasesList = await api
+			.get("/movie/now_playing?language=pt-BR")
+			.then((res) => res.data.results);
+
+		return releasesList;
+	}
+
+	async getPopularList(pageNumber = 1) {
+		const popularList = await api
+			.get(`/movie/popular?language=pt-BR&page=${pageNumber}`)
+			.then((res) => res.data);
+
+		return popularList;
+	}
 }

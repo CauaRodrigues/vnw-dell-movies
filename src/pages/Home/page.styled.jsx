@@ -9,5 +9,5 @@ export const Main = styled.main`
 `;
 
 export const ContainerContent = styled.section`
-	width: 80%;
+	width: 85%;
 `;

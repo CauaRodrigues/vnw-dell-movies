@@ -20,7 +20,7 @@ export const Hero = styled.section`
 `;
 
 export const HeroContent = styled.div`
-	width: 80%;
+	width: 85%;
 	margin: 12px;
 	margin-bottom: 3rem;
 
