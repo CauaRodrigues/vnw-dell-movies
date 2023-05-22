@@ -14,7 +14,4 @@ export const ContainerContent = styled.section`
 	@media (max-width: 900px) {
 		width: 90%;
 	}
-
-	@media (max-width: 645px) {
-	}
 `;

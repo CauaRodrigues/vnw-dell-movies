@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Carousel, { consts } from "react-elastic-carousel";
 import { useTheme } from "styled-components";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
-import MediaQuery, { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 
 import Text from "@components/Text";
 import Card from "@components/Card";
@@ -33,12 +33,15 @@ const LastReleases = ({ releases }) => {
 	}, [isTablet, isNotDesktop]);
 
 	const Arrows = ({ type, onClick, isEdge }) => {
+		const color = isEdge ? colors.gray : colors.primary;
+
 		const pointer =
 			type === consts.PREV ? (
-				<CaretLeft size={32} weight="light" color={colors.primary} />
+				<CaretLeft size={32} weight="light" color={color} />
 			) : (
-				<CaretRight size={32} weight="light" color={colors.primary} />
+				<CaretRight size={32} weight="light" color={color} />
 			);
+
 		return (
 			<S.ArrowButton onClick={onClick} disabled={isEdge}>
 				{pointer}

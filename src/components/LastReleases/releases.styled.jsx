@@ -12,4 +12,6 @@ export const ContainerReleases = styled.section`
 export const ArrowButton = styled.button`
 	background-color: transparent;
 	align-self: center;
+
+	cursor: ${(props) => (props.disabled ? "default" : "pointer")};
 `;
