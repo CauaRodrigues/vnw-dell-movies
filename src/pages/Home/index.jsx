@@ -30,7 +30,6 @@ const Home = () => {
 
 		await srv.getPopularList(1).then((data) => {
 			setPopularList(data.results);
-			console.log(data);
 		});
 	};
 
@@ -45,7 +44,7 @@ const Home = () => {
 			<S.Main>
 				<S.ContainerContent>
 					<GenresList genres={genresList} />
-					{/* <LastReleases releases={lastReleases} /> */}
+					<LastReleases releases={lastReleases} />
 					<CardGallery list={popularList} title="Em Alta" />
 				</S.ContainerContent>
 			</S.Main>

@@ -1,25 +1,57 @@
 import React from "react";
-import Carousel from "react-elastic-carousel";
+import { useTheme } from "styled-components";
 
 import Text from "@components/Text";
+import Card from "@components/Card";
 import * as S from "./releases.styled";
-
-const breakpoints = [
-	{ width: 1, itemsToShow: 1 },
-	{ width: 550, itemsToShow: 2, itemsToScroll: 2 },
-	{ width: 768, itemsToShow: 3 },
-	{ width: 1200, itemsToShow: 4 },
-];
+import Carousel, { consts } from "react-elastic-carousel";
+import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 
 const LastReleases = ({ releases }) => {
+	const { colors } = useTheme();
+
+	const Arrows = ({ type, onClick, isEdge }) => {
+		const pointer =
+			type === consts.PREV ? (
+				<CaretLeft size={32} weight="light" color={colors.primary} />
+			) : (
+				<CaretRight size={32} weight="light" color={colors.primary} />
+			);
+		return (
+			<S.ArrowButton onClick={onClick} disabled={isEdge}>
+				{pointer}
+			</S.ArrowButton>
+		);
+	};
+
 	return (
 		<S.ContainerReleases>
-			<Text text="Últimos Lançamentos" tag="h2" />
+			<Text
+				text="Últimos Lançamentos"
+				tag="h2"
+				color={colors.primary}
+				size="lg"
+				fw="bd"
+			/>
 
-			<Carousel>
-				<span>1</span>
-				<span>1</span>
-				<span>1</span>
+			<Carousel
+				itemsToShow={5}
+				enableSwipe
+				itemsToScroll={5}
+				pagination={false}
+				enableMouseSwipe={true}
+				itemPadding={[8, 8]}
+				renderArrow={Arrows}
+			>
+				{releases.map((item) => (
+					<Card
+						key={item.id}
+						title={item.title}
+						poster={item.poster_path}
+						release={item.release_date}
+						description={item.overview}
+					/>
+				))}
 			</Carousel>
 		</S.ContainerReleases>
 	);

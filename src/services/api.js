@@ -47,7 +47,7 @@ export default class Service {
 
 	async getLastReleases() {
 		const releasesList = await api
-			.get("/movie/now_playing?language=pt-BR")
+			.get("/movie/now_playing?include_adult=false&language=pt-BR")
 			.then((res) => res.data.results);
 
 		return releasesList;
@@ -55,7 +55,9 @@ export default class Service {
 
 	async getPopularList(pageNumber = 1) {
 		const popularList = await api
-			.get(`/movie/popular?language=pt-BR&page=${pageNumber}`)
+			.get(
+				`/movie/popular?include_adult=false&language=pt-BR&page=${pageNumber}`
+			)
 			.then((res) => res.data);
 
 		return popularList;
