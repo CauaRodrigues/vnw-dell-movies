@@ -10,4 +10,11 @@ export const Main = styled.main`
 
 export const ContainerContent = styled.section`
 	width: 85%;
+
+	@media (max-width: 900px) {
+		width: 90%;
+	}
+
+	@media (max-width: 645px) {
+	}
 `;
