@@ -5,6 +5,7 @@ import ServiceMovie from "@services/Movie";
 import GenresList from "@components/GenresList";
 import LastReleases from "@components/LastReleases";
 import CardGallery from "@components/CardGallery";
+import Pagination from "@components/Pagination";
 import * as S from "./page.styled";
 
 const srv = new ServiceMovie();
@@ -17,6 +18,12 @@ const Movies = () => {
 	const [filteredMovies, setFilteredMovies] = useState([]);
 
 	const [filterId, setFilterId] = useState();
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState();
+
+	const handlerPageNumber = (number) => {
+		setCurrentPage(number);
+	};
 
 	const loadData = async () => {
 		await srv.getPopularMovie().then((data) => {
@@ -31,22 +38,21 @@ const Movies = () => {
 			setLastReleases(data);
 		});
 
-		await srv.getPopularList(1).then((data) => {
+		await srv.getPopularList(currentPage).then((data) => {
+			setTotalPages(data.total_pages);
 			setPopularList(data.results);
-			console.log(data);
 		});
 
 		if (filterId) {
 			await srv.filterMoviesById(filterId).then((data) => {
 				setFilteredMovies(data.results);
-				console.log(data);
 			});
 		}
 	};
 
 	useEffect(() => {
 		loadData();
-	}, [filterId]);
+	}, [filterId, currentPage]);
 
 	return (
 		<>
@@ -59,6 +65,11 @@ const Movies = () => {
 					<CardGallery
 						list={filterId ? filteredMovies : popularList}
 						title="Em Alta"
+					/>
+					<Pagination
+						actualPage={currentPage}
+						totalPages={totalPages}
+						onPageChange={handlerPageNumber}
 					/>
 				</S.ContainerContent>
 			</S.Main>

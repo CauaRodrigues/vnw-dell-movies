@@ -10,16 +10,20 @@ const Card = ({ title, release, poster, description }) => {
 	const [overview, setOverview] = useState("");
 
 	const { colors } = useTheme();
-	const year = FormatDate(release);
+	const year = release ? FormatDate(release) : "????";
 	const image = `https://image.tmdb.org/t/p/original${poster}`;
 
 	useEffect(() => {
-		const listWords = description.split(" ");
-		if (listWords.length >= 200) {
-			const text = listWords.slice(0, 220);
-			setOverview(text.join(" "));
+		if (description) {
+			const listWords = description.split(" ");
+			if (listWords.length >= 200) {
+				const text = listWords.slice(0, 220);
+				setOverview(text.join(" "));
+			} else {
+				setOverview(description);
+			}
 		} else {
-			setOverview(description);
+			setOverview("????");
 		}
 	}, []);
 
