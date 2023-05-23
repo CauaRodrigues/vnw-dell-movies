@@ -1,29 +1,40 @@
 import styled from "styled-components";
 
 export const PaginationContainer = styled.div`
+	margin: 20px 0;
 	display: flex;
 	justify-content: center;
-	margin-top: 20px;
-	background-color: white;
-	color: black;
+	align-items: baseline;
+	gap: 0.5rem;
 `;
 
 export const PageButton = styled.button`
-	border: none;
-	background: none;
+	width: 45px;
+	height: 45px;
+
+	background: ${({ theme, active }) =>
+		active ? theme.colors.primary : "transparent"};
+	border: 1px solid ${({ theme }) => theme.colors.primary};
+	border-radius: 50%;
 	cursor: pointer;
-	padding: 5px 10px;
-	margin: 0 5px;
-	font-size: 16px;
-	color: ${(props) => (props.active ? "blue" : "black")};
+
+	text-align: center;
+	font-size: 1rem;
+	color: ${({ theme, active }) =>
+		active ? theme.colors.black : theme.colors.primary};
 `;
 
-export const LastPageButton = styled.button`
-	border: none;
-	background: none;
+export const Button = styled.button`
+	padding: 8px 12px;
+
+	background: ${({ theme, active }) =>
+		active ? theme.colors.primary : "transparent"};
+	border: 1px solid ${({ theme }) => theme.colors.primary};
+	border-radius: 8px;
 	cursor: pointer;
-	padding: 5px 10px;
-	margin: 0 5px;
-	font-size: 16px;
-	color: blue;
+
+	text-align: center;
+	font-size: 1rem;
+	color: ${({ theme, active }) =>
+		active ? theme.colors.black : theme.colors.primary};
 `;

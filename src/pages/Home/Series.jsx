@@ -14,7 +14,7 @@ const Series = () => {
 	const [genresList, setGenresList] = useState([]);
 	const [lastReleases, setLastReleases] = useState([]);
 	const [popularList, setPopularList] = useState([]);
-	const [filteredMovies, setFilteredMovies] = useState([]);
+	const [filteredSeries, setFilteredSeries] = useState([]);
 
 	const [filterId, setFilterId] = useState();
 
@@ -37,8 +37,8 @@ const Series = () => {
 		});
 
 		if (filterId) {
-			await srv.filterMoviesById(filterId).then((data) => {
-				setFilteredMovies(data.results);
+			await srv.filterSeriesById(filterId).then((data) => {
+				setFilteredSeries(data.results);
 			});
 		}
 	};
@@ -56,7 +56,7 @@ const Series = () => {
 					<GenresList genres={genresList} addFilter={(id) => setFilterId(id)} />
 					{/* <LastReleases releases={lastReleases} /> */}
 					<CardGallery
-						list={filterId ? filteredMovies : popularList}
+						list={filterId ? filteredSeries : popularList}
 						title="Em Alta"
 					/>
 				</S.ContainerContent>

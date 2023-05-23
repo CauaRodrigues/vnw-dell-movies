@@ -19,7 +19,7 @@ const Movies = () => {
 
 	const [filterId, setFilterId] = useState();
 	const [currentPage, setCurrentPage] = useState(1);
-	const [totalPages, setTotalPages] = useState();
+	const totalPages = 500;
 
 	const handlerPageNumber = (number) => {
 		setCurrentPage(number);
@@ -39,7 +39,6 @@ const Movies = () => {
 		});
 
 		await srv.getPopularList(currentPage).then((data) => {
-			setTotalPages(data.total_pages);
 			setPopularList(data.results);
 		});
 
