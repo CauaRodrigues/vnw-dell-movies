@@ -14,6 +14,9 @@ const Home = () => {
 	const [genresList, setGenresList] = useState([]);
 	const [lastReleases, setLastReleases] = useState([]);
 	const [popularList, setPopularList] = useState([]);
+	const [filteredMovies, setFilteredMovies] = useState([]);
+
+	const [filterId, setFilterId] = useState();
 
 	const loadData = async () => {
 		await srv.getPopularMovie().then((data) => {
@@ -31,11 +34,18 @@ const Home = () => {
 		await srv.getPopularList(1).then((data) => {
 			setPopularList(data.results);
 		});
+
+		if (filterId) {
+			await srv.filterMoviesById(filterId).then((data) => {
+				setFilteredMovies(data.results);
+				console.log(data);
+			});
+		}
 	};
 
 	useEffect(() => {
 		loadData();
-	}, []);
+	}, [filterId]);
 
 	return (
 		<>
@@ -43,9 +53,12 @@ const Home = () => {
 
 			<S.Main>
 				<S.ContainerContent>
-					<GenresList genres={genresList} />
-					<LastReleases releases={lastReleases} />
-					<CardGallery list={popularList} title="Em Alta" />
+					<GenresList genres={genresList} addFilter={(id) => setFilterId(id)} />
+					{/* <LastReleases releases={lastReleases} /> */}
+					<CardGallery
+						list={filterId ? filteredMovies : popularList}
+						title="Em Alta"
+					/>
 				</S.ContainerContent>
 			</S.Main>
 		</>

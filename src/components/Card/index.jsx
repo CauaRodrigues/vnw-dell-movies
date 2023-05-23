@@ -28,10 +28,10 @@ const Card = ({ title, release, poster, description }) => {
 	};
 
 	return (
-		<S.CardBox onClick={handlerCard} isOpen={showDescription}>
+		<S.CardBox onClick={handlerCard} isopen={showDescription ? 1 : 0}>
 			<img src={image} alt={title} />
 
-			<S.CardInfo isOpen={showDescription}>
+			<S.CardInfo isopen={showDescription ? 1 : 0}>
 				<div className="title--card">
 					<Text
 						text={title}

@@ -30,3 +30,15 @@ export const GenresList = styled.ul`
 		background: ${({ theme }) => theme.colors.gray_dark};
 	}
 `;
+
+export const Button = styled.button`
+	background: ${({ theme, active }) =>
+		active ? theme.colors.gray_light : "transparent"};
+	padding: 10px 24px;
+	border-radius: 43px;
+	transition: all 0.5s;
+
+	&:hover {
+		background-color: ${({ theme }) => theme.colors.gray_light};
+	}
+`;
