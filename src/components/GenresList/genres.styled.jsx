@@ -23,11 +23,12 @@ export const GenresList = styled.ul`
 		background-color: ${({ theme }) => theme.colors.primary};
 	}
 	&::-webkit-scrollbar {
-		height: 4px;
+		height: 5px;
 		background: transparent;
 	}
 	&::-webkit-scrollbar-thumb {
 		background: ${({ theme }) => theme.colors.gray_dark};
+		border-radius: 50px;
 	}
 `;
 

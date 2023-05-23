@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTheme } from "styled-components";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 
@@ -16,6 +16,22 @@ const GenresList = ({ genres, addFilter }) => {
 	return (
 		<S.GenresContainer>
 			<S.GenresList>
+				<S.Button
+					onClick={() => {
+						selectGenreToFilter(0);
+						addFilter(0);
+					}}
+				>
+					<li>
+						<Text
+							text="Em Alta"
+							tag="span"
+							size="nl"
+							fw="rg"
+							color={colors.primary}
+						/>
+					</li>
+				</S.Button>
 				{genres.map((genre) => (
 					<React.Fragment key={genre.id}>
 						<S.Button

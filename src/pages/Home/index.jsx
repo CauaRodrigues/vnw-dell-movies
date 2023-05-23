@@ -1,68 +1,13 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
 
-import Hero from "@components/Hero";
-import Service from "@services/api";
-import GenresList from "@components/GenresList";
-import LastReleases from "@components/LastReleases";
-import CardGallery from "@components/CardGallery";
-import * as S from "./page.styled";
-
-const srv = new Service();
+import Series from "./Series";
+import Movies from "./Movies";
 
 const Home = () => {
-	const [banner, setBanner] = useState({});
-	const [genresList, setGenresList] = useState([]);
-	const [lastReleases, setLastReleases] = useState([]);
-	const [popularList, setPopularList] = useState([]);
-	const [filteredMovies, setFilteredMovies] = useState([]);
+	const { tab } = useParams();
 
-	const [filterId, setFilterId] = useState();
-
-	const loadData = async () => {
-		await srv.getPopularMovie().then((data) => {
-			setBanner(data);
-		});
-
-		await srv.getGenresList().then((data) => {
-			setGenresList(data);
-		});
-
-		await srv.getLastReleases().then((data) => {
-			setLastReleases(data);
-		});
-
-		await srv.getPopularList(1).then((data) => {
-			setPopularList(data.results);
-		});
-
-		if (filterId) {
-			await srv.filterMoviesById(filterId).then((data) => {
-				setFilteredMovies(data.results);
-				console.log(data);
-			});
-		}
-	};
-
-	useEffect(() => {
-		loadData();
-	}, [filterId]);
-
-	return (
-		<>
-			<Hero popular={banner} />
-
-			<S.Main>
-				<S.ContainerContent>
-					<GenresList genres={genresList} addFilter={(id) => setFilterId(id)} />
-					{/* <LastReleases releases={lastReleases} /> */}
-					<CardGallery
-						list={filterId ? filteredMovies : popularList}
-						title="Em Alta"
-					/>
-				</S.ContainerContent>
-			</S.Main>
-		</>
-	);
+	return <>{tab === "series" ? <Series /> : <Movies />}</>;
 };
 
 export default Home;
