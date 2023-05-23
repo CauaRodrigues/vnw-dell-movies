@@ -17,9 +17,9 @@ const CardGallery = ({ list, title }) => {
 				{list.map((item) => (
 					<React.Fragment key={item.id}>
 						<Card
-							title={item.title}
+							title={item.title || item.name}
 							poster={item.poster_path}
-							release={item.release_date}
+							release={item.release_date || item.first_air_date}
 							description={item.overview}
 						/>
 					</React.Fragment>

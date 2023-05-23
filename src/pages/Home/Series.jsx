@@ -33,6 +33,7 @@ const Series = () => {
 
 		await srv.getPopularList(1).then((data) => {
 			setPopularList(data.results);
+			console.log(data);
 		});
 
 		if (filterId) {
