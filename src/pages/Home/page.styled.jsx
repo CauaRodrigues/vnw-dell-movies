@@ -10,6 +10,10 @@ export const Main = styled.main`
 
 export const ContainerContent = styled.section`
 	width: 85%;
+	margin: 1rem 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 
 	@media (max-width: 900px) {
 		width: 90%;

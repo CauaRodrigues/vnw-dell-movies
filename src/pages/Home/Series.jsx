@@ -5,6 +5,7 @@ import ServiceTV from "@services/TV";
 import GenresList from "@components/GenresList";
 import LastReleases from "@components/LastReleases";
 import CardGallery from "@components/CardGallery";
+import Pagination from "@components/Pagination";
 import * as S from "./page.styled";
 
 const srv = new ServiceTV();
@@ -17,6 +18,12 @@ const Series = () => {
 	const [filteredSeries, setFilteredSeries] = useState([]);
 
 	const [filterId, setFilterId] = useState();
+	const [currentPage, setCurrentPage] = useState(1);
+	const totalPages = 500;
+
+	const handlerPageNumber = (number) => {
+		setCurrentPage(number);
+	};
 
 	const loadData = async () => {
 		await srv.getPopularSerie().then((data) => {
@@ -31,13 +38,13 @@ const Series = () => {
 			setLastReleases(data);
 		});
 
-		await srv.getPopularList(1).then((data) => {
+		await srv.getPopularList(currentPage).then((data) => {
 			setPopularList(data.results);
 			console.log(data);
 		});
 
 		if (filterId) {
-			await srv.filterSeriesById(filterId).then((data) => {
+			await srv.filterSeriesById(filterId, currentPage).then((data) => {
 				setFilteredSeries(data.results);
 			});
 		}
@@ -45,7 +52,7 @@ const Series = () => {
 
 	useEffect(() => {
 		loadData();
-	}, [filterId]);
+	}, [filterId, currentPage]);
 
 	return (
 		<>
@@ -58,6 +65,11 @@ const Series = () => {
 					<CardGallery
 						list={filterId ? filteredSeries : popularList}
 						title="Em Alta"
+					/>
+					<Pagination
+						actualPage={currentPage}
+						totalPages={totalPages}
+						onPageChange={handlerPageNumber}
 					/>
 				</S.ContainerContent>
 			</S.Main>

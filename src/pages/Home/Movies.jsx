@@ -43,7 +43,7 @@ const Movies = () => {
 		});
 
 		if (filterId) {
-			await srv.filterMoviesById(filterId).then((data) => {
+			await srv.filterMoviesById(filterId, currentPage).then((data) => {
 				setFilteredMovies(data.results);
 			});
 		}

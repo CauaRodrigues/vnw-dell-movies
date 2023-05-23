@@ -37,8 +37,12 @@ const Pagination = ({ actualPage, totalPages, onPageChange }) => {
 		<S.PaginationContainer>
 			<S.Button
 				onClick={() => {
-					handlePageClick(currentPage - 1);
-					onPageChange(currentPage - 1);
+					handlePageClick((prevState) =>
+						prevState === 1 ? prevState : prevState - 1
+					);
+					onPageChange((prevState) =>
+						prevState === 1 ? prevState : prevState - 1
+					);
 				}}
 				active={currentPage === 1 ? 1 : 0}
 			>
@@ -77,8 +81,12 @@ const Pagination = ({ actualPage, totalPages, onPageChange }) => {
 
 			<S.Button
 				onClick={() => {
-					handlePageClick(currentPage + 1);
-					onPageChange(currentPage + 1);
+					handlePageClick((prevState) =>
+						prevState === totalPages ? prevState : prevState + 1
+					);
+					onPageChange((prevState) =>
+						prevState === totalPages ? prevState : prevState + 1
+					);
 				}}
 				active={currentPage === totalPages ? 1 : 0}
 			>
