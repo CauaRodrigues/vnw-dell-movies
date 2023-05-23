@@ -10,8 +10,9 @@ import MediaQuery from "react-responsive";
 const Header = () => {
 	const { tab } = useParams();
 
-	const [tabActive, setTabActive] =
-		useState(() => (tab === "series" ? false : true));
+	const [tabActive, setTabActive] = useState(() =>
+		tab === "series" ? false : true
+	);
 
 	const handlerTab = () => {
 		setTabActive((prevState) => !prevState);
@@ -53,11 +54,11 @@ const Header = () => {
 				</S.NavMenu>
 
 				<S.NavMenu>
-					<Link to="/search">
+					<Link to="#search">
 						<MagnifyingGlass size={26} />
 					</Link>
 
-					<Link to="/#filter">
+					<Link to="#search">
 						<Text text="Filtro" tag="span" color="inherit" size="nl" fw="rg" />
 					</Link>
 
