@@ -1,7 +1,7 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import Layout from "@components/Layout";
-import { Home, Error } from "./pages";
+import { Home, Search, Error } from "./pages";
 
 const router = createBrowserRouter([
 	{
@@ -14,8 +14,8 @@ const router = createBrowserRouter([
 				element: <Home />,
 			},
 			{
-				path: "/search",
-				element: <Home />,
+				path: "/search/:tab/:text",
+				element: <Search />,
 			},
 			{
 				path: "/login",

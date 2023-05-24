@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-
 import { Link, useParams } from "react-router-dom";
-import { MagnifyingGlass } from "@phosphor-icons/react";
-
-import * as S from "./header.styled";
-import Text from "@components/Text";
 import MediaQuery from "react-responsive";
+
+import Text from "@components/Text";
+import SearchButton from "@components/SearchButton";
+import * as S from "./header.styled";
 
 const Header = () => {
 	const { tab } = useParams();
@@ -54,9 +53,7 @@ const Header = () => {
 				</S.NavMenu>
 
 				<S.NavMenu>
-					<Link to="#search">
-						<MagnifyingGlass size={26} />
-					</Link>
+					<SearchButton actualTab={tab} />
 
 					<Link to="#search">
 						<Text text="Filtro" tag="span" color="inherit" size="nl" fw="rg" />

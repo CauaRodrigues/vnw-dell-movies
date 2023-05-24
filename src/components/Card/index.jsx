@@ -11,7 +11,7 @@ const Card = ({ title, release, poster, description }) => {
 
 	const { colors } = useTheme();
 	const year = release ? FormatDate(release) : "????";
-	const image = `https://image.tmdb.org/t/p/original${poster}`;
+	const image = `https://image.tmdb.org/t/p/w500${poster}`;
 
 	useEffect(() => {
 		if (description) {
