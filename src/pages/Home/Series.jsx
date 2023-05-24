@@ -40,7 +40,6 @@ const Series = () => {
 
 		await srv.getPopularList(currentPage).then((data) => {
 			setPopularList(data.results);
-			console.log(data);
 		});
 
 		if (filterId) {
@@ -61,7 +60,7 @@ const Series = () => {
 			<S.Main>
 				<S.ContainerContent>
 					<GenresList genres={genresList} addFilter={(id) => setFilterId(id)} />
-					{/* <LastReleases releases={lastReleases} /> */}
+					<LastReleases releases={lastReleases} />
 					<CardGallery
 						list={filterId ? filteredSeries : popularList}
 						title="Em Alta"

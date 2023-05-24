@@ -60,7 +60,7 @@ const Movies = () => {
 			<S.Main>
 				<S.ContainerContent>
 					<GenresList genres={genresList} addFilter={(id) => setFilterId(id)} />
-					{/* <LastReleases releases={lastReleases} /> */}
+					<LastReleases releases={lastReleases} />
 					<CardGallery
 						list={filterId ? filteredMovies : popularList}
 						title="Em Alta"

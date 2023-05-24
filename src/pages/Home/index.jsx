@@ -7,7 +7,7 @@ import Movies from "./Movies";
 const Home = () => {
 	const { tab } = useParams();
 
-	return <>{tab === "series" ? <Series /> : <Movies />}</>;
+	return <>{tab === "tv" ? <Series /> : <Movies />}</>;
 };
 
 export default Home;

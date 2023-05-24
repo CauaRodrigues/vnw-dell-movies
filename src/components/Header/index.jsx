@@ -10,7 +10,7 @@ const Header = () => {
 	const { tab } = useParams();
 
 	const [tabActive, setTabActive] = useState(() =>
-		tab === "series" ? false : true
+		tab === "tv" ? false : true
 	);
 
 	const handlerTab = () => {
@@ -18,7 +18,7 @@ const Header = () => {
 	};
 
 	useEffect(() => {
-		setTabActive(() => (tab === "series" ? false : true));
+		setTabActive(() => (tab === "tv" ? false : true));
 	}, [tab]);
 
 	return (
@@ -34,7 +34,7 @@ const Header = () => {
 			<MediaQuery minWidth="610px">
 				<S.NavMenu>
 					<Link
-						to="/series"
+						to="/tv"
 						className="tab"
 						id={!tabActive ? "active" : "deactivated"}
 						onClick={handlerTab}
@@ -43,7 +43,7 @@ const Header = () => {
 					</Link>
 
 					<Link
-						to="/movies"
+						to="/movie"
 						className="tab"
 						id={tabActive ? "active" : "deactivated"}
 						onClick={handlerTab}
