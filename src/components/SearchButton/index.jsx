@@ -15,7 +15,7 @@ const SearchButton = ({ actualTab }) => {
 
 	const onSearch = () => {
 		if (searchText.trim()) {
-			navigate(`/search/${actualTab || "movies"}/${searchText}`);
+			navigate(`/search/${actualTab || "movie"}/${searchText}`);
 		} else {
 			setWarning("Digite para pesquisar");
 		}
