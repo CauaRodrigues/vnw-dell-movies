@@ -16,7 +16,7 @@ export const GenresList = styled.ul`
 	justify-content: space-between;
 	align-items: center;
 	gap: 2rem;
-	overflow-x: scroll;
+	overflow-x: hidden;
 	white-space: nowrap;
 
 	&::-webkit-scrollbar-track {
