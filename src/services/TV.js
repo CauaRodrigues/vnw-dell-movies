@@ -39,7 +39,7 @@ export default class ServiceTV {
 
 	async getLastReleases() {
 		const releasesList = await api
-			.get("/movie/now_playing?include_adult=false&language=pt-BR")
+			.get("/tv/on_the_air?include_adult=false&language=pt-BR")
 			.then((res) => res.data.results);
 
 		return releasesList;

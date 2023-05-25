@@ -71,10 +71,10 @@ const LastReleases = ({ releases }) => {
 				{releases.map((item) => (
 					<Card
 						key={item.id}
-						title={item.title}
+						title={item.title || item.name}
 						poster={item.poster_path}
-						release={item.release_date}
-						description={item.overview}
+						release={item.release_date || item.first_air_date}
+						description={item.overview || "???"}
 					/>
 				))}
 			</Carousel>

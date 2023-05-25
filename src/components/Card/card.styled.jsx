@@ -5,7 +5,7 @@ export const CardBox = styled.figure`
 	height: 100%;
 	position: relative;
 	display: flex;
-	flex-direction: column;
+	flex-direction: ${(props) => (props.isopen ? "row" : "column")};
 	justify-content: flex-start;
 	gap: 0.3rem;
 
@@ -20,22 +20,28 @@ export const CardInfo = styled.div`
 		if (props.isopen) {
 			return css`
 				width: 100%;
-				height: 300px;
+				height: inherit;
 				padding: 12px;
 
-				flex: 1;
 				position: ${props.isopen ? "absolute" : "static"};
 				top: ${props.isopen ? "0" : null};
 				overflow-y: scroll;
 
+				&::-webkit-scrollbar-track {
+					background-color: ${({ theme }) => theme.colors.primary};
+				}
 				&::-webkit-scrollbar {
-					display: none;
-					background-color: transparent;
+					width: 4px;
+					background: transparent;
+				}
+				&::-webkit-scrollbar-thumb {
+					background: ${({ theme }) => theme.colors.gray_dark};
+					border-radius: 50px;
 				}
 
-				.description--card {
+				/* .description--card {
 					height: inherit;
-				}
+				} */
 			`;
 		}
 	}}
