@@ -8,10 +8,12 @@ import * as S from "./card.styled";
 const Card = ({ title, release, poster, description }) => {
 	const [showDescription, setShowDescription] = useState(false);
 	const [overview, setOverview] = useState("");
+	const [image, setImage] = useState(
+		`https://image.tmdb.org/t/p/w500${poster}`
+	);
 
 	const { colors } = useTheme();
 	const year = release ? FormatDate(release) : "????";
-	const image = `https://image.tmdb.org/t/p/w500${poster}`;
 
 	useEffect(() => {
 		if (description) {
@@ -31,9 +33,13 @@ const Card = ({ title, release, poster, description }) => {
 		setShowDescription((prevState) => !prevState);
 	};
 
+	const handlerImageError = () => {
+		setImage("/assets/images/image-default.png");
+	};
+
 	return (
 		<S.CardBox onClick={handlerCard} isopen={showDescription ? 1 : 0}>
-			<img src={image} alt={title} />
+			<img src={image} onError={handlerImageError} alt={title} />
 
 			<S.CardInfo isopen={showDescription ? 1 : 0}>
 				<div className="title--card">
