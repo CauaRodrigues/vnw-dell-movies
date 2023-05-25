@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Layout from "@components/Layout";
-import { Home, Search, Error } from "./pages";
+import { Home, Search, Error, Categories } from "./pages";
 
 const router = createBrowserRouter([
 	{
@@ -16,6 +16,10 @@ const router = createBrowserRouter([
 			{
 				path: "/search/:tab/:text",
 				element: <Search />,
+			},
+			{
+				path: "/genres/:tab/:categoryId/:categoryName",
+				element: <Categories />,
 			},
 			{
 				path: "/login",

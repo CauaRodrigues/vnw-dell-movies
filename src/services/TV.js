@@ -52,14 +52,4 @@ export default class ServiceTV {
 
 		return popularList;
 	}
-
-	async filterSeriesById(genreId, pageNumber = 1) {
-		const movies = await api
-			.get(
-				`/discover/tv?include_adult=false&include_video=false&language=pt-BR&page=${pageNumber}&sort_by=popularity.desc&with_genres=${genreId}`
-			)
-			.then((res) => res.data);
-
-		return movies;
-	}
 }

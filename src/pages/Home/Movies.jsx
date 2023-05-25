@@ -15,9 +15,7 @@ const Movies = () => {
 	const [genresList, setGenresList] = useState([]);
 	const [lastReleases, setLastReleases] = useState([]);
 	const [popularList, setPopularList] = useState([]);
-	const [filteredMovies, setFilteredMovies] = useState([]);
 
-	const [filterId, setFilterId] = useState();
 	const [currentPage, setCurrentPage] = useState(1);
 	const totalPages = 500;
 
@@ -41,17 +39,11 @@ const Movies = () => {
 		await srv.getPopularList(currentPage).then((data) => {
 			setPopularList(data.results);
 		});
-
-		if (filterId) {
-			await srv.filterMoviesById(filterId, currentPage).then((data) => {
-				setFilteredMovies(data.results);
-			});
-		}
 	};
 
 	useEffect(() => {
 		loadData();
-	}, [filterId, currentPage]);
+	}, [currentPage]);
 
 	return (
 		<>
@@ -59,12 +51,9 @@ const Movies = () => {
 
 			<S.Main>
 				<S.ContainerContent>
-					<GenresList genres={genresList} addFilter={(id) => setFilterId(id)} />
+					<GenresList genres={genresList} />
 					<LastReleases releases={lastReleases} />
-					<CardGallery
-						list={filterId ? filteredMovies : popularList}
-						title="Em Alta"
-					/>
+					<CardGallery list={popularList} title="Em Alta" />
 					<Pagination
 						actualPage={currentPage}
 						totalPages={totalPages}

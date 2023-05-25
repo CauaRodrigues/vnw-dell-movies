@@ -1,45 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "styled-components";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 
 import Text from "@components/Text";
 import * as S from "./genres.styled";
 
-const GenresList = ({ genres, addFilter }) => {
-	const [genreSelected, setGenreSelected] = useState();
+const GenresList = ({ genres }) => {
+	const { tab } = useParams();
 	const { colors } = useTheme();
 
-	const selectGenreToFilter = (genreId) => {
-		setGenreSelected(genreId);
-	};
+	const navigate = useNavigate();
 
 	return (
 		<S.GenresContainer>
 			<S.GenresList>
-				<S.Button
-					onClick={() => {
-						selectGenreToFilter(0);
-						addFilter(0);
-					}}
-				>
-					<li>
-						<Text
-							text="Em Alta"
-							tag="span"
-							size="nl"
-							fw="rg"
-							color={colors.primary}
-						/>
-					</li>
-				</S.Button>
 				{genres.map((genre) => (
 					<React.Fragment key={genre.id}>
 						<S.Button
 							onClick={() => {
-								selectGenreToFilter(genre.id);
-								addFilter(genre.id);
+								navigate(
+									`/genres/${tab === "tv" ? "tv" : "movie"}/${genre.id}/${
+										genre.name
+									}`
+								);
 							}}
-							active={genreSelected === genre.id ? 1 : 0}
 						>
 							<li>
 								<Text
