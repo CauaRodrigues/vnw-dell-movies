@@ -12,7 +12,7 @@ const Categories = () => {
 	const [listItems, setListItems] = useState([]);
 
 	const loadData = async () => {
-		await srv.listByCategory(actualTab, categoryId).then((data) => {
+		await srv.listByCategory(tab, categoryId).then((data) => {
 			setListItems(data.results);
 		});
 	};
