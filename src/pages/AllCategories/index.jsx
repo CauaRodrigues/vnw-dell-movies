@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "styled-components";
 import { useParams } from "react-router-dom";
 
 import ServiceSearch from "@services/Search";
@@ -11,7 +10,6 @@ const srv = new ServiceSearch();
 
 const AllCategories = () => {
 	const { tab } = useParams();
-	const { colors } = useTheme();
 
 	const [genresList, setGenresList] = useState([]);
 
@@ -24,7 +22,12 @@ const AllCategories = () => {
 
 						<S.ContentList>
 							{genresList.map((genre) => (
-								<CardCateory categoryName={genre.name} key={genre.id} />
+								<CardCateory
+									key={genre.id}
+									categoryName={genre.name}
+									categoryId={genre.id}
+									tab="movie"
+								/>
 							))}
 						</S.ContentList>
 					</>
@@ -36,7 +39,12 @@ const AllCategories = () => {
 
 						<S.ContentList>
 							{genresList.map((genre) => (
-								<CardCateory categoryName={genre.name} key={genre.id} />
+								<CardCateory
+									key={genre.id}
+									categoryName={genre.name}
+									categoryId={genre.id}
+									tab="tv"
+								/>
 							))}
 						</S.ContentList>
 					</>
@@ -48,7 +56,12 @@ const AllCategories = () => {
 						<S.ContentList>
 							{genresList[0]
 								? genresList[0].map((genre) => (
-										<CardCateory categoryName={genre.name} key={genre.id} />
+										<CardCateory
+											key={genre.id}
+											categoryName={genre.name}
+											categoryId={genre.id}
+											tab="movie"
+										/>
 								  ))
 								: null}
 						</S.ContentList>
@@ -57,7 +70,12 @@ const AllCategories = () => {
 						<S.ContentList>
 							{genresList[1]
 								? genresList[1].map((genre) => (
-										<CardCateory categoryName={genre.name} key={genre.id} />
+										<CardCateory
+											key={genre.id}
+											categoryName={genre.name}
+											categoryId={genre.id}
+											tab="tv"
+										/>
 								  ))
 								: null}
 						</S.ContentList>
