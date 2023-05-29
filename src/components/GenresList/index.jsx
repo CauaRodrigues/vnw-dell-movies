@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "styled-components";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 
@@ -41,7 +41,9 @@ const GenresList = ({ genres }) => {
 			</S.GenresList>
 
 			<li>
-				<MagnifyingGlass size={26} />
+				<Link to={`/genres/${tab === "tv" ? "tv" : "movie"}`}>
+					<MagnifyingGlass size={26} color={colors.primary} />
+				</Link>
 			</li>
 		</S.GenresContainer>
 	);

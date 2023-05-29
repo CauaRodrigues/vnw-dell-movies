@@ -20,4 +20,23 @@ export default class ServiceSearch {
 
 		return data;
 	}
+
+	async getGenresList(endpoint) {
+		if (endpoint === "all") {
+			const moviesGenres = await api
+				.get(`/genre/movie/list?language=pt-BR`)
+				.then((res) => res.data.genres);
+			const seriesGenres = await api
+				.get(`/genre/tv/list?language=pt-BR`)
+				.then((res) => res.data.genres);
+
+			return [moviesGenres, seriesGenres];
+		} else {
+			const genresList = await api
+				.get(`/genre/${endpoint}/list?language=pt-BR`)
+				.then((res) => res.data.genres);
+
+			return genresList;
+		}
+	}
 }
