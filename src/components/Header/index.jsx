@@ -55,9 +55,9 @@ const Header = () => {
 				<S.NavMenu>
 					<SearchButton actualTab={tab} />
 
-					<a href="/#search">
+					<Link to="/genres">
 						<Text text="Filtro" tag="span" color="inherit" size="nl" fw="rg" />
-					</a>
+					</Link>
 
 					<Link to="/login">
 						<Text text="Login" tag="span" color="inherit" size="nl" fw="rg" />
